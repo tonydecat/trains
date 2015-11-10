@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Vollkorn:400,400italic,700,700italic|Alegreya:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <style>
+            html, body, div, span, applet, object, iframe,
+            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+            a, abbr, acronym, address, big, cite, code,
+            del, dfn, em, img, ins, kbd, q, s, samp,
+            small, strike, strong, sub, sup, tt, var,
+            b, u, i, center,
+            dl, dt, dd, ol, ul, li,
+            fieldset, form, label, legend,
+            table, caption, tbody, tfoot, thead, tr, th, td,
+            article, aside, canvas, details, embed, 
+            figure, figcaption, footer, header, hgroup, 
+            menu, nav, output, ruby, section, summary,
+            time, mark, audio, video {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font: inherit;
+                vertical-align: baseline;
+            }
+            /* HTML5 display-role reset for older browsers */
+            article, aside, details, figcaption, figure, 
+            footer, header, hgroup, menu, nav, section {
+                display: block;
+            }
+            body {
+                line-height: 1;
+            }
+            ol, ul {
+                list-style: none;
+            }
+            blockquote, q {
+                quotes: none;
+            }
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+                content: '';
+                content: none;
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+
+            .title-page {
+                height: 100vh;
+                width: 100%;
+                background-color: #111;
+                position: relative;
+            }
+
+            .title-page h1 {
+                color: white;
+                font-size: 3em;
+                font-family: 'Vollkorn', serif;
+                position: absolute;
+                bottom: 50px;
+                left: 50px;
+            }
+
+            .scrolling {
+                padding: 200px;
+            }
+
+            .timeline {
+                height: 1200px;
+                width: 2px;
+                background-color: #111;
+
+                /* Needs to be positioned. */
+                position: relative;
+            }
+
+            .point {
+                position: absolute;
+                background-color: #111;
+                height: 10px;
+                width: 10px;
+                border-radius: 5px;
+                margin-left: -4px;
+                margin-top: -5px;
+            }
+
+            .info-bubble {
+                position: absolute;
+                font-family: 'Vollkorn', serif;
+                color: #111;
+                font-size: 20px;
+                /*background-color: green;*/
+                height: 20px;
+                right: 20px;
+                /*border-radius: 5px;*/
+                margin-top: -9px;
+                text-align: right;
+                width: 170px;
+            }
+
+            .static-box {
+                border: 1px solid red;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                bottom: 20px;
+                left: 230px;
+            }
+            
+        </style>
+        <script type="text/javascript">
+            var POINTS = [{
+                    time: 0,
+                    distance: 0,
+                    label: 'SAN FRANCISCO'
+                },{
+                    time: 30,
+                    distance: 0,
+                    label: 'SEATTLE'
+                },{
+                    time: 40,
+                    distance: 0,
+                    label: 'VANCOUVER'
+                },{
+                    time: 90,
+                    distance: 0,
+                    label: 'JASPER'
+                }];
+
+            var HEIGHT = 1200;
+
+            var init = function(){
+                var unit = HEIGHT / POINTS[POINTS.length -1]['time'];
+
+                var timeline = document.querySelector('.timeline');
+
+                POINTS.forEach(function(point){
+                    var pointDiv = document.createElement('div');
+                    pointDiv.classList.add('point');
+                    pointDiv.style.top = Math.round(point['time'] * unit) + 'px';
+                    timeline.appendChild(pointDiv);
+
+                    var infoDiv = document.createElement('div');
+                    infoDiv.classList.add('info-bubble');
+                    infoDiv.style.top = Math.round(point['time'] * unit) + 'px';
+                    infoDiv.innerHTML = point.label;
+                    timeline.appendChild(infoDiv);
+                });
+            };
+
+            window.addEventListener('load', init);
+        </script>
+    </head>
+    <body>
+        <div class='title-page'>
+            <h1>By Train and Foot</h1>
+        </div>
+        <div class='scrolling'>
+            <div class='timeline'></div>
+        </div>
+        <div class='static-box'>
+        </div>
+    </body>
+</html>
+
