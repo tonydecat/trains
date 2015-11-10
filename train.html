@@ -104,11 +104,35 @@
                 border: 1px solid red;
                 position: fixed;
                 top: 20px;
-                right: 20px;
+                width: calc(100vw - 270px);
                 bottom: 20px;
                 left: 230px;
             }
+
+            .slide {
+                height: calc(100vh - 40px);
+                width: calc(100vw - 270px);
+                position: fixed;
+                display: none;
+            }
+
+            .slide--active {
+                display: block;
+            }
             
+            .slide__centered-text {
+                position: absolute;
+                width: 100%;
+                text-align: center;
+                border: 1px solid green;
+                height: 60px;
+                top: 50%;
+                margin-top: -30px;
+            }
+
+            .slide__image {
+                height: 100%;
+            }
         </style>
         <script type="text/javascript">
             var POINTS = [{
@@ -129,7 +153,45 @@
                     label: 'JASPER'
                 }];
 
+            var SLIDES = [{
+                    showAtScroll: -1000,
+                    html: ''
+                },{
+                    showAtScroll: 100,
+                    html: '<div class="slide__centered-text">Test</div>'
+                },{
+                    showAtScroll: 600,
+                    html: '<img class="slide__image" src="trees.JPG" />'
+                },{
+                    showAtScroll: 900,
+                    html: 'Success'
+                }];
+
             var HEIGHT = 1200;
+            var currentSlideNum;
+
+            var onScroll = function(){
+                var prevSlide = SLIDES[currentSlideNum - 1];
+                var slide = SLIDES[currentSlideNum];
+                var nextSlide = SLIDES[currentSlideNum + 1];
+
+                function navigateToSlide(newSlide, newSlideNum){
+                    if (slide){
+                        slide.elem.classList.remove('slide--active');
+                    }
+                    if (newSlide){
+                        newSlide.elem.classList.add('slide--active');
+                    }
+                    currentSlideNum = newSlideNum;
+                }
+
+                // This should be made more robust.
+                if (window.scrollY - window.innerHeight < slide.showAtScroll){
+                    navigateToSlide(prevSlide, currentSlideNum - 1);
+                } else if (nextSlide && window.scrollY - window.innerHeight >= nextSlide.showAtScroll){
+                    navigateToSlide(nextSlide, currentSlideNum + 1);
+                }
+            };
 
             var init = function(){
                 var unit = HEIGHT / POINTS[POINTS.length -1]['time'];
@@ -148,6 +210,20 @@
                     infoDiv.innerHTML = point.label;
                     timeline.appendChild(infoDiv);
                 });
+
+                var staticBox = document.querySelector('.static-box');
+
+                SLIDES.forEach(function(slide){
+                    var slideDiv = document.createElement('div');
+                    slideDiv.classList.add('slide');
+                    slideDiv.innerHTML = slide.html;
+                    staticBox.appendChild(slideDiv);
+                    slide.elem = slideDiv;
+                });
+
+                currentSlideNum = 0;
+                SLIDES[0].elem.classList.add('slide--active');
+                window.addEventListener('scroll', onScroll);
             };
 
             window.addEventListener('load', init);
