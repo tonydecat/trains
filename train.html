@@ -57,7 +57,6 @@
             }
 
             .title-page__overlay {
-                /*z-index: 1;*/
                 height: 100%;
                 width: 100%;
                 overflow: auto;
@@ -67,13 +66,17 @@
                 background-size: cover;
             }
 
+            .title-page__headings {
+                position: absolute;
+                bottom: 50px;
+                left: 50px;
+                right: 50px;
+            }
+
             .title-page h1 {
                 color: white;
                 font-size: 3em;
                 font-family: 'Alegreya', serif;
-                position: absolute;
-                bottom: 80px;
-                left: 50px;
                 text-shadow: 1px 1px 2px black;
             }
 
@@ -81,9 +84,6 @@
                 color: white;
                 font-size: 1.8em;
                 font-family: 'Alegreya', serif;
-                position: absolute;
-                bottom: 50px;
-                left: 50px;
                 text-shadow: 1px 1px 2px black;
             }
 
@@ -135,7 +135,6 @@
             }
 
             .static-box {
-                /*border: 1px solid red;*/
                 position: fixed;
                 top: 20px;
                 width: calc(100vw - 360px);
@@ -156,42 +155,59 @@
             }
             
             .slide__centered-text {
-                position: absolute;
                 text-align: center;
-                height: 100px;
-                top: 50%;
-                margin-top: -50px;
                 font-family: 'Alegreya', serif;
                 color: #111;
                 font-size: 21px;
                 padding: 0 100px;
+                height: 100px;
                 line-height: 32px;
+                
+                max-height: 100%;
+                max-width: 100%;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
             }
 
             .slide__image {
                 max-height: 100%;
                 max-width: 100%;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+
+            @media (max-width: 700px) {
+                .slide__centered-text {
+                    height: 300px;
+                    padding: 0 10px;
+                }
+            }
+
+            @media (max-width: 800px) {
+                .scrolling {
+                    padding: 70px 110px;
+                }
+
+                .static-box {
+                    width: calc(100vw - 260px);
+                    left: 240px;
+                }
+
+                .slide {
+                    height: calc(100vh - 40px);
+                    width: calc(100vw - 260px);
+                }
             }
         </style>
         <script type="text/javascript">
-            // var POINTS = [{
-            //         time: 0,
-            //         distance: 0,
-            //         label: 'SAN FRANCISCO'
-            //     },{
-            //         time: 1440,
-            //         distance: 0,
-            //         label: 'SEATTLE'
-            //     },{
-            //         time: 3000,
-            //         distance: 0,
-            //         label: 'VANCOUVER'
-            //     },{
-            //         time: 5000,
-            //         distance: 0,
-            //         label: 'JASPER'
-            //     }];
-
             var SLIDES = [{
                     time: -10000,
                     html: ''
@@ -274,8 +290,10 @@
     <body>
         <div class='title-page'>
             <div class='title-page__overlay'>
-                <h1>By Train and Foot</h1>
-                <h2>From San Francisco to Jasper National Park</h2>
+                <div class='title-page__headings'>
+                    <h1>By Train and Foot</h1>
+                    <h2>From San Francisco to Jasper National Park</h2>
+                </div>
             </div>
         </div>
         <div class='scrolling'>
