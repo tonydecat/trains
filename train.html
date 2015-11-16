@@ -147,26 +147,25 @@
                 height: calc(100vh - 40px);
                 width: calc(100vw - 360px);
                 position: fixed;
-                display: none;
+                opacity: 0;
+                transition: opacity 0.4s;
             }
 
             .slide--active {
-                display: block;
+                opacity: 1;
             }
             
             .slide__centered-text {
                 position: absolute;
-                width: 100%;
                 text-align: center;
-                /*border: 1px solid green;*/
-                height: 60px;
+                height: 100px;
                 top: 50%;
-                margin-top: -30px;
+                margin-top: -50px;
                 font-family: 'Alegreya', serif;
                 color: #111;
-                font-size: 24px;
-                font-weight: 600;
-                font-style: italic;
+                font-size: 21px;
+                padding: 0 100px;
+                line-height: 32px;
             }
 
             .slide__image {
@@ -198,10 +197,25 @@
                     html: ''
                 },{
                     time: 0,
-                    html: '<div class="slide__centered-text">Test</div>'
+                    html: '<div class="slide__centered-text">At 6:30pm on July 18th, 2015, I walked out of my apartment in San Francisco with a backpack, a train ticket I\'d booked an hour earlier, and an impractical idea: to see how far north I could go without the help of cars or planes.</div>'
+                },{
+                    time: 300,
+                    html: '<img class="slide__image" src="media/1-powell.JPG" />'
                 },{
                     time: 600,
-                    html: '<img class="slide__image" src="trees.JPG" />'
+                    html: '<img class="slide__image" src="media/2-oakland.JPG" />'
+                },{
+                    time: 900,
+                    html: '<video class="slide__image" autoplay="true" controls="true" src="media/3-lake.mov" />'
+                },{
+                    time: 1200,
+                    html: '<img class="slide__image" src="media/4-amtrak_dining.JPG" />'
+                },{
+                    time: 1500,
+                    html: '<img class="slide__image" src="media/5-amtrak_food.JPG" />'
+                },{
+                    time: 1800,
+                    html: '<img class="slide__image" src="media/6-mtrainier.JPG" />'
                 },{
                     time: 3000,
                     html: '<div class="slide__centered-text">Success</div>'
@@ -270,8 +284,8 @@
                 <div class='timeline__transit timeline__transit--walking'>
                     <div class='timeline__annotation timeline__annotation--short'>
                         <ul>
-                            <li>1,800 steps</li>
-                            <li>30 minutes</li>
+                            <li>4,179 steps</li>
+                            <li> minutes</li>
                         </ul>
                     </div>
                 </div>
@@ -289,9 +303,9 @@
                 <div class='timeline__transit timeline__transit--walking'>
                     <div class='timeline__annotation'>
                         <ul>
-                            <li>1,800 steps</li>
-                            <li>30 minutes walking</li>
-                            <li>2 hours waiting</li>
+                            <li>3,794 steps</li>
+                            <li> minutes walking</li>
+                            <li> hours waiting</li>
                         </ul>
                     </div>
                 </div>
@@ -299,11 +313,11 @@
                 <div class='timeline__transit timeline__transit--train' style='height:1760px'>
                     <div class='timeline__annotation'>
                         <ul>
-                            <li>12 stops</li>
-                            <li>23 hours, 13 minutes</li>
+                            <li>19 stops</li>
+                            <li>22 hours, 33 minutes</li>
                             <li>6 hours sleep</li>
-                            <li>2,000 steps (while on board)</li>
-                            <li>1,000 km</li>
+                            <li>2,145 steps (while on board)</li>
+                            <li>1,469 km</li>
                         </ul>
                     </div>
                 </div>
@@ -319,7 +333,7 @@
                 <div class='timeline__transit timeline__transit--train' style='height:440px'>
                     <div class='timeline__annotation'>
                         <ul>
-                            <li></li>
+                            <li>253 km</li>
                         </ul>
                     </div>
                 </div>
