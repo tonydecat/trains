@@ -51,9 +51,10 @@
                 height: 100vh;
                 width: 100%;
                 background-color: #111;
-                background-image: url("media/cliff.jpg");
+                background-image: url("media/cliff-bw.jpg");
                 background-size: cover;
                 position: relative;
+                z-index: 1;
             }
 
             .title-page__overlay {
@@ -62,7 +63,8 @@
                 overflow: auto;
                 top: 0;
                 left: 0;
-                background-image: url("media/cliff-bw.jpg");
+                background-image: url("media/cliff.jpg");
+                opacity: 0;
                 background-size: cover;
             }
 
@@ -87,23 +89,36 @@
                 text-shadow: 1px 1px 2px black;
             }
 
-            .scrolling {
-                padding: 120px 160px;
+            .timeline {
+                background-image: url('noise.png');
+                width: 320px;
+                padding: 50px 0;
+                position: relative;
             }
 
             .timeline__place {
                 text-align: center;
-                width: 200px;
-                margin-left: -100px;
                 font-family: 'Alegreya', serif;
                 color: #111;
                 font-size: 18px;
                 font-weight: 700;
             }
 
+            .timeline__tooltip::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                margin-top: 1px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 8px 11px 8px 0;
+                border-color: transparent white transparent transparent;
+            }
+
             .timeline__transit {
                 width: 38px;
-                margin: 30px -19px;
+                margin: 30px auto;
                 min-height: 88px;
                 position: relative;
             }
@@ -136,16 +151,15 @@
 
             .static-box {
                 position: fixed;
-                top: 20px;
-                width: calc(100vw - 360px);
-                bottom: 20px;
-                left: 340px;
+                top: 0;
+                width: calc(100vw - 340px);
+                bottom: 0;
+                right: 0;
+                padding: 8px;
+                background-color: #fff;
             }
 
             .slide {
-                height: calc(100vh - 40px);
-                width: calc(100vw - 360px);
-                position: fixed;
                 opacity: 0;
                 transition: opacity 0.4s;
             }
@@ -160,7 +174,7 @@
                 color: #111;
                 font-size: 21px;
                 padding: 0 100px;
-                height: 100px;
+                height: 130px;
                 line-height: 32px;
                 
                 max-height: 100%;
@@ -178,10 +192,10 @@
                 max-width: 100%;
                 margin: auto;
                 position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
+                top: 6px;
+                left: 6px;
+                bottom: 6px;
+                right: 6px;
             }
 
             @media (max-width: 700px) {
@@ -213,28 +227,53 @@
                     html: ''
                 },{
                     time: 0,
-                    html: '<div class="slide__centered-text">At 6:30pm on July 18th, 2015, I walked out of my apartment in San Francisco with a backpack, a train ticket I\'d booked an hour earlier, and an impractical idea: to see how far north I could go without the help of cars or planes.</div>'
-                },{
-                    time: 300,
-                    html: '<img class="slide__image" src="media/1-powell.JPG" />'
-                },{
-                    time: 600,
-                    html: '<img class="slide__image" src="media/2-oakland.JPG" />'
-                },{
+                    html: '<div class="slide__centered-text">At 6:30pm on July 18th, 2015, I walked out of my apartment in San Francisco with a backpack, a train ticket I\'d booked an hour earlier, and an impractical idea: to see how far north I could go without the help of cars or planes.</div>',
+                    marker: '.js-marker-nobhill'
+                },
+                { time: 170, html: '<img class="slide__image" src="media/photo-1.JPG" />', marker: '.js-marker-powell'},
+                { time: 430, html: '<img class="slide__image" src="media/photo-2.JPG" />', marker: '.js-marker-oakland'},
+                { time: 600, html: '<img class="slide__image" src="media/photo-3.JPG" />', marker: '.js-marker-jacklondon'},
+                { time: 900, html: '<img class="slide__image" src="media/photo-4.JPG" />'},
+                { time: 1100, html: '<img class="slide__image" src="media/photo-5.JPG" />'},
+                { time: 1300, html: '<video class="slide__image" autoplay="true" controls="true" src="media/photo-6.mp4" />'},
+                { time: 1500, html: '<img class="slide__image" src="media/photo-7.JPG" />'},
+                { time: 1700, html: '<img class="slide__image" src="media/photo-8.JPG" />'},
+                { time: 1900, html: '<img class="slide__image" src="media/photo-9.JPG" />'},
+                { time: 2400, html: '<img class="slide__image" src="media/photo-10.JPG" />'},
+                { time: 2600, html: '<img class="slide__image" src="media/photo-11.JPG" />'},
+                { time: 2800, html: '<img class="slide__image" src="media/photo-12.JPG" />'},
+                { time: 3000, html: '<img class="slide__image" src="media/photo-13.JPG" />'},
+                { time: 3200, html: '<img class="slide__image" src="media/photo-14.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-15.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-16.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-17.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-18.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-19.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-20.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-21.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-22.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-23.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-24.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-25.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-26.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-27.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-28.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-29.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-30.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-31.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-32.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-33.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-34.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-35.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-36.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-37.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-38.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-39.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-40.JPG" />'},
+                { time: 300, html: '<img class="slide__image" src="media/photo-41.JPG" />'},
+                {
                     time: 900,
                     html: '<video class="slide__image" autoplay="true" controls="true" src="media/3-lake.mov" />'
-                },{
-                    time: 1200,
-                    html: '<img class="slide__image" src="media/4-amtrak_dining.JPG" />'
-                },{
-                    time: 1500,
-                    html: '<img class="slide__image" src="media/5-amtrak_food.JPG" />'
-                },{
-                    time: 1800,
-                    html: '<img class="slide__image" src="media/6-mtrainier.JPG" />'
-                },{
-                    time: 3000,
-                    html: '<div class="slide__centered-text">Success</div>'
                 },{
                     time: 4000,
                     html: ''
@@ -244,7 +283,10 @@
 
             var onScroll = function(){
                 var titlePageOverlay = document.querySelector('.title-page__overlay');
-                titlePageOverlay.style.opacity = 1 - 2 * window.scrollY / window.innerHeight;
+                var titlePageHeadings = document.querySelector('.title-page__headings');
+                var titlePageScrollPercent = window.scrollY / window.innerHeight;
+                titlePageOverlay.style.opacity = titlePageScrollPercent > 0.5? 1 : 2 * titlePageScrollPercent;
+                titlePageHeadings.style.opacity = titlePageScrollPercent > 0.9? 0 : 1 - 1.3 * titlePageScrollPercent;
 
                 var prevSlide = SLIDES[currentSlideNum - 1];
                 var slide = SLIDES[currentSlideNum];
@@ -253,9 +295,17 @@
                 function navigateToSlide(newSlide, newSlideNum){
                     if (slide){
                         slide.elem.classList.remove('slide--active');
+                        if (slide.marker){
+                            var elem = document.querySelector(slide.marker);
+                            if (elem) elem.classList.remove('timeline__tooltip');
+                        }
                     }
                     if (newSlide){
                         newSlide.elem.classList.add('slide--active');
+                        if (newSlide.marker){
+                            var elem = document.querySelector(newSlide.marker);
+                            if (elem) elem.classList.add('timeline__tooltip');
+                        }
                     }
                     currentSlideNum = newSlideNum;
                 }
@@ -289,25 +339,24 @@
     </head>
     <body>
         <div class='title-page'>
-            <div class='title-page__overlay'>
-                <div class='title-page__headings'>
-                    <h1>By Train and Foot</h1>
-                    <h2>From San Francisco to Jasper National Park</h2>
-                </div>
+            <div class='title-page__overlay'></div>
+            <div class='title-page__headings'>
+                <h1>By Train and Foot</h1>
+                <h2>From San Francisco to Jasper National Park</h2>
             </div>
         </div>
         <div class='scrolling'>
             <div class='timeline'>
-                <div class='timeline__place'>Nob Hill, San Francisco</div>
+                <div class='timeline__place js-marker-nobhill'>Nob Hill, San Francisco</div>
                 <div class='timeline__transit timeline__transit--walking'>
                     <div class='timeline__annotation timeline__annotation--short'>
                         <ul>
                             <li>4,179 steps</li>
-                            <li> minutes</li>
+                            <li>30 minutes</li>
                         </ul>
                     </div>
                 </div>
-                <div class='timeline__place'>Powell St. BART Station</div>
+                <div class='timeline__place js-marker-powell'>Powell St. BART Station</div>
                 <div class='timeline__transit timeline__transit--train' style="height:176px">
                     <div class='timeline__annotation'>
                         <ul>
@@ -317,7 +366,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class='timeline__place'>Oakland City Center Station</div>
+                <div class='timeline__place js-marker-oakland'>Oakland City Center Station</div>
                 <div class='timeline__transit timeline__transit--walking'>
                     <div class='timeline__annotation'>
                         <ul>
@@ -327,7 +376,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class='timeline__place'>Jack London Square</div>
+                <div class='timeline__place js-marker-jacklondon'>Jack London Square</div>
                 <div class='timeline__transit timeline__transit--train' style='height:1760px'>
                     <div class='timeline__annotation'>
                         <ul>
