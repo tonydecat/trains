@@ -54,7 +54,7 @@
                 background-image: url("media/cliff-bw.jpg");
                 background-size: cover;
                 position: relative;
-                z-index: 1;
+                z-index: 2;
             }
 
             .title-page__overlay {
@@ -70,23 +70,51 @@
 
             .title-page__headings {
                 position: absolute;
-                bottom: 50px;
+                bottom: 120px;
+                /*top: 60px;*/
+                /*margin: auto;*/
+                height: 100px;
                 left: 50px;
                 right: 50px;
+            }
+
+            .title-page__scrolltocontinue {
+                position: absolute;
+                bottom: 40px;
+                left: 0;
+                right: 0;
+                width: 200px;
+                text-align: center;
+                margin: 0 auto;
+
+                color: white;
+                font-size: 18px;
+                font-family: 'Alegreya', serif;
+                text-shadow: 1px 1px 2px black;
+
+                cursor: pointer;
+
+                opacity: 0;
+                transition: opacity 1s;
+            }
+
+            .title-page__scrolltocontinue:hover {
+                line-height: 20px;
+                bottom: 37px;
             }
 
             .title-page h1 {
                 color: white;
                 font-size: 3em;
                 font-family: 'Alegreya', serif;
-                text-shadow: 1px 1px 2px black;
+                text-shadow: 1px 1px 3px black;
             }
 
             .title-page h2 {
                 color: white;
                 font-size: 1.8em;
                 font-family: 'Alegreya', serif;
-                text-shadow: 1px 1px 2px black;
+                text-shadow: 1px 1px 3px black;
             }
 
             .timeline {
@@ -160,12 +188,21 @@
             }
 
             .slide {
-                opacity: 0;
+                opacity: 0; 
                 transition: opacity 0.4s;
+                pointer-events: none;
+
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                bottom: 6px;
+                right: 6px;
             }
 
             .slide--active {
                 opacity: 1;
+                z-index: 1;
+                pointer-events: auto;
             }
             
             .slide__centered-text {
@@ -192,10 +229,10 @@
                 max-width: 100%;
                 margin: auto;
                 position: absolute;
-                top: 6px;
-                left: 6px;
-                bottom: 6px;
-                right: 6px;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
             }
 
             @media (max-width: 700px) {
@@ -271,6 +308,38 @@
                 }];
 
             var currentSlideNum;
+            var scrollButtonTimeout;
+
+            function easeInOut(progress){
+                return Math.sin(progress * Math.PI - Math.PI / 2) * 0.5 + 0.5;
+            }
+
+            function smoothScrollToSlide(slideIndex){
+                var slide = SLIDES[slideIndex];
+                if (!slide) return;
+
+                var startScroll = window.scrollY;
+                var endScroll = slide.time + window.innerHeight + 15;
+                if (endScroll < 0) endScroll = 0;
+                var difference = endScroll - startScroll;
+                var timing = (Math.abs(difference) > 400) ? Math.abs(difference) : 400;
+
+                var startTimestamp;
+
+                function animate(timestamp){
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    progress = (timestamp - startTimestamp) / timing;
+
+                    if (progress < 1){
+                        window.scrollTo(0, startScroll + easeInOut(progress) * difference);
+                        window.requestAnimationFrame(animate);
+                    } else {
+                        window.scrollTo(0, startScroll + difference);
+                    }
+                }
+                window.requestAnimationFrame(animate);
+            }
+
             function navigateToCorrectSlide(){
                 var newSlide;
 
@@ -308,6 +377,15 @@
                 titlePageOverlay.style.opacity = titlePageScrollPercent > 0.5? 1 : 2 * titlePageScrollPercent;
                 titlePageHeadings.style.opacity = titlePageScrollPercent > 0.9? 0 : 1 - 1.3 * titlePageScrollPercent;
 
+                if (window.scrollY == 0){
+                    scrollButtonTimeout = window.setTimeout(function(){
+                        document.querySelector('.title-page__scrolltocontinue').style.opacity = 1;
+                    }, 2000);
+                } else {
+                    window.clearTimeout(scrollButtonTimeout);
+                    document.querySelector('.title-page__scrolltocontinue').style.opacity = 0;
+                }
+
                 var slide = SLIDES[currentSlideNum];
                 var nextSlide = SLIDES[currentSlideNum + 1];
 
@@ -333,9 +411,32 @@
                 navigateToCorrectSlide();
 
                 window.addEventListener('scroll', onScroll);
+
+                startButton = document.querySelector('.title-page__scrolltocontinue');
+                startButton.addEventListener('click', function(){
+                    smoothScrollToSlide(1);
+                });
             };
 
             window.addEventListener('DOMContentLoaded', init);
+
+            window.addEventListener('load', function(){
+                if (window.scrollY < 90){
+                    scrollButtonTimeout = window.setTimeout(function(){
+                        document.querySelector('.title-page__scrolltocontinue').style.opacity = 1;
+                    }, 1500);
+                }
+            });
+
+            window.addEventListener('keydown', function(evt){
+                if (evt.keyCode === 40){
+                    smoothScrollToSlide(currentSlideNum + 1);
+                    evt.preventDefault();
+                } else if (evt.keyCode === 38){
+                    smoothScrollToSlide(currentSlideNum - 1);
+                    evt.preventDefault();
+                }
+            });
         </script>
     </head>
     <body>
@@ -344,6 +445,11 @@
             <div class='title-page__headings'>
                 <h1>By Train and Foot</h1>
                 <h2>From San Francisco to Jasper National Park</h2>
+            </div>
+            <div class='title-page__scrolltocontinue'>
+                Scroll to continue
+                <br />
+                &#9662;
             </div>
         </div>
         <div class='scrolling'>
@@ -425,6 +531,7 @@
                 <div class='timeline__transit timeline__transit--walking' style='height:880px'></div>
             </div>
         </div>
+        <div>Some stuff at the bottom</div>
         <div class='static-box'>
         </div>
     </body>
