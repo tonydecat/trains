@@ -70,7 +70,7 @@
 
             .title-page__headings {
                 position: absolute;
-                bottom: 120px;
+                bottom: 90px;
                 /*top: 60px;*/
                 /*margin: auto;*/
                 height: 100px;
@@ -132,7 +132,7 @@
                 font-weight: 700;
             }
 
-            .timeline__tooltip::after {
+            .timeline__place.timeline__tooltip::after {
                 content: '';
                 position: absolute;
                 right: 0;
@@ -182,6 +182,36 @@
                 margin-top: -26px;
             }
 
+            .timeline__media-icon {
+                position: absolute;
+                left: 125px;
+                background-image: url('icons/picture_icon.png');
+                width: 20px;
+                height: 14px;
+                opacity: 0.3;
+
+                /*transition: opacity 0.4s;*/
+            }
+
+            .timeline__media-icon--video {
+                background-image: url('icons/video_icon.png');
+            }
+
+            .timeline__media-icon.timeline__tooltip {
+                opacity: 1;
+            }
+
+            .timeline__media-icon.timeline__tooltip::after {
+                content: '';
+                position: absolute;
+                left: 43px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 8px 11px 8px 0;
+                border-color: transparent white transparent transparent;
+            }
+
             .static-box {
                 position: fixed;
                 top: 0;
@@ -194,7 +224,7 @@
 
             .slide {
                 opacity: 0; 
-                transition: opacity 0.4s;
+                /*transition: opacity 0.4s;*/
                 pointer-events: none;
 
                 position: absolute;
@@ -271,44 +301,55 @@
                 { time: 600, html: '<img class="slide__image" src="media/photo-3.jpg" />', marker: '.js-marker-jacklondon'},
                 { time: 900, html: '<img class="slide__image" src="media/photo-4.jpg" />'},
                 { time: 1100, html: '<img class="slide__image" src="media/photo-5.jpg" />'},
-                { time: 1300, html: '<video class="slide__image" controls="true" src="media/photo-6.mp4" />'},
+                { time: 1300, html: '<video class="slide__image" controls="true"><source src="media/video-6.webm" type="video/webm"><source src="media/video-6.mp4" type="video/mp4"><source src="media/video-6.mov" type="video/quicktime">Your browser does not support video.</video>'},
                 { time: 1500, html: '<img class="slide__image" src="media/photo-7.jpg" />'},
                 { time: 1700, html: '<img class="slide__image" src="media/photo-8.jpg" />'},
                 { time: 1900, html: '<img class="slide__image" src="media/photo-9.jpg" />'},
                 { time: 2400, html: '<img class="slide__image" src="media/photo-10.jpg" />'},
                 { time: 2600, html: '<img class="slide__image" src="media/photo-11.jpg" />'},
                 { time: 2800, html: '<img class="slide__image" src="media/photo-12.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-13.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-14.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-15.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-16.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-17.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-18.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-19.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-20.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-21.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-22.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-23.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-24.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-25.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-26.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-27.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-28.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-29.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-30.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-31.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-32.jpg" />'},
-                { time: 3000, html: '<video class="slide__image" controls="true" src="media/photo-33.mp4" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-34.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-35.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-36.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-37.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-38.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-39.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-40.jpg" />'},
-                { time: 3000, html: '<img class="slide__image" src="media/photo-41.jpg" />'},
+                { time: 10000, html: '<div class="slide__centered-text">At 6:30pm on July 18th, 2015,.</div>',},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-13.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-14.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-15.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-16.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-17.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-18.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-19.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-20.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-21.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-22.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-23.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-24.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-25.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-26.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-27.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-28.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-29.jpg" />'},
+                { time: 10000, html: '<video class="slide__image" controls="true"><source src="media/video-30.webm" type="video/webm"><source src="media/video-30.mp4" type="video/mp4"><source src="media/video-30.mov" type="video/quicktime">Your browser does not support video.</video>'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-31.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-32.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-33.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-34.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-35.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-36.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-37.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-38.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-39.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-40.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-41.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-42.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-43.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-44.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-45.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-46.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-47.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-48.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-49.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-50.jpg" />'},
+                { time: 10000, html: '<img class="slide__image" src="media/photo-51.jpg" />'},
                 {
-                    time: 4000,
+                    time: 11000,
                     html: ''
                 }];
 
@@ -361,15 +402,13 @@
                 if (oldSlide){
                     oldSlide.elem.classList.remove('slide--active');
                     if (oldSlide.marker){
-                        var elem = document.querySelector(oldSlide.marker);
-                        if (elem) elem.classList.remove('timeline__tooltip');
+                        if (oldSlide.marker) oldSlide.marker.classList.remove('timeline__tooltip');
                     }
                 }
                 if (newSlide){
                     newSlide.elem.classList.add('slide--active');
                     if (newSlide.marker){
-                        var elem = document.querySelector(newSlide.marker);
-                        if (elem) elem.classList.add('timeline__tooltip');
+                        if (newSlide.marker) newSlide.marker.classList.add('timeline__tooltip');
                     }
                 }
                 currentSlideNum = newSlideNum;
@@ -401,6 +440,13 @@
                 }
             };
 
+            function getOffsetTopRelativeTo(element, relativeTo){
+                if (element === relativeTo || element === document.body){
+                    return 0;
+                }
+                return element.offsetTop + getOffsetTopRelativeTo(element.offsetParent, relativeTo);
+            }
+
             var init = function(){
                 var staticBox = document.querySelector('.static-box');
 
@@ -412,6 +458,14 @@
                     slide.elem = slideDiv;
                 });
 
+                var slideMarkers = document.querySelectorAll('[data-slide-index]');
+                Array.prototype.forEach.call(slideMarkers, function(slideMarker){
+                    index = parseInt(slideMarker.dataset.slideIndex, 10);
+                    SLIDES[index].marker = slideMarker;
+                    SLIDES[index].time = getOffsetTopRelativeTo(slideMarker, document.querySelector('.timeline')) - 50;
+                });
+
+                // Show the initial slide based on the initial scroll position.
                 currentSlideNum = -1;
                 navigateToCorrectSlide();
 
@@ -459,7 +513,7 @@
         </div>
         <div class='scrolling'>
             <div class='timeline'>
-                <div class='timeline__place js-marker-nobhill'>Nob Hill, San Francisco</div>
+                <div class='timeline__place' data-slide-index='1'>Nob Hill, San Francisco</div>
                 <div class='timeline__transit timeline__transit--walking'>
                     <div class='timeline__annotation timeline__annotation--short'>
                         <ul>
@@ -468,8 +522,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class='timeline__place js-marker-powell'>Powell St. BART Station</div>
-                <div class='timeline__transit timeline__transit--train' style="height:176px">
+                <div class='timeline__place' data-slide-index='2'>Powell St. BART Station</div>
+                <div class='timeline__transit timeline__transit--train' style="height: 176px">
                     <div class='timeline__annotation'>
                         <ul>
                             <li>4 stops</li>
@@ -478,7 +532,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class='timeline__place js-marker-oakland'>Oakland City Center Station</div>
+                <div class='timeline__place' data-slide-index='3'>Oakland City Center Station</div>
                 <div class='timeline__transit timeline__transit--walking'>
                     <div class='timeline__annotation'>
                         <ul>
@@ -488,8 +542,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class='timeline__place js-marker-jacklondon'>Jack London Square</div>
-                <div class='timeline__transit timeline__transit--train' style='height:1760px'>
+                <div class='timeline__place' data-slide-index='4'>Jack London Square</div>
+                <div class='timeline__transit timeline__transit--train' style='height:1936px'>
                     <div class='timeline__annotation'>
                         <ul>
                             <li>19 stops</li>
@@ -499,14 +553,29 @@
                             <li>1,469 km</li>
                         </ul>
                     </div>
+                    <div class='timeline__media-icon' data-slide-index='5' style="top: 80px"></div>
+                    <div class='timeline__media-icon' data-slide-index='6' style="top: 800px"></div>
+                    <div class='timeline__media-icon timeline__media-icon--video' data-slide-index='7' style="top: 900px"></div>
+                    <div class='timeline__media-icon' data-slide-index='8' style="top: 1100px"></div>
+                    <div class='timeline__media-icon' data-slide-index='9' style="top: 1300px"></div>
+                    <div class='timeline__media-icon' data-slide-index='10' style="top: 1400px"></div>
+                    <div class='timeline__media-icon' data-slide-index='11' style="top: 1600px"></div>
+                    <div class='timeline__media-icon' data-slide-index='12' style="top: 1700px"></div>
+                    <div class='timeline__media-icon' data-slide-index='13' style="top: 1900px"></div>
                 </div>
-                <div class='timeline__place'>Seattle King St. Station</div>
-                <div class='timeline__transit timeline__transit--walking' style='height:440px'>
+                <div class='timeline__place' data-slide-index='14'>Seattle King St. Station</div>
+                <div class='timeline__transit timeline__transit--walking' style='height:880px'>
                     <div class='timeline__annotation'>
                         <ul>
                             <li></li>
                         </ul>
                     </div>
+                    <div class='timeline__media-icon' data-slide-index='15' style="top: 80px"></div>
+                    <div class='timeline__media-icon' data-slide-index='16' style="top: 400px"></div>
+                    <div class='timeline__media-icon' data-slide-index='17' style="top: 500px"></div>
+                    <div class='timeline__media-icon' data-slide-index='18' style="top: 600px"></div>
+                    <div class='timeline__media-icon' data-slide-index='19' style="top: 670px"></div>
+                    <div class='timeline__media-icon' data-slide-index='20' style="top: 750px"></div>
                 </div>
                 <div class='timeline__place'>Seattle King St. Station (Again)</div>
                 <div class='timeline__transit timeline__transit--train' style='height:440px'>
@@ -515,25 +584,60 @@
                             <li>253 km</li>
                         </ul>
                     </div>
+                    <div class='timeline__media-icon' data-slide-index='21' style="top: 220px"></div>
                 </div>
-                <div class='timeline__place'>Vancouver Pacific Central</div>
-                <div class='timeline__transit timeline__transit--walking' style='height:440px'>
+                <div class='timeline__place' data-slide-index='22'>Vancouver Pacific Central</div>
+                <div class='timeline__transit timeline__transit--walking' style='height:880px'>
                     <div class='timeline__annotation'>
                         <ul>
                             <li></li>
                         </ul>
                     </div>
+                    <div class='timeline__media-icon' data-slide-index='23' style="top: 280px"></div>
+                    <div class='timeline__media-icon' data-slide-index='24' style="top: 480px"></div>
                 </div>
-                <div class='timeline__place'>Vancouver Pacific Central</div>
+                <div class='timeline__place' data-slide-index='25'>Vancouver Pacific Central (Again)</div>
                 <div class='timeline__transit timeline__transit--train' style='height:1760px'>
                     <div class='timeline__annotation'>
                         <ul>
                             <li></li>
                         </ul>
                     </div>
+                    <div class='timeline__media-icon' data-slide-index='26' style="top: 0px"></div>
+                    <div class='timeline__media-icon' data-slide-index='27' style="top: 30px"></div>
+                    <div class='timeline__media-icon' data-slide-index='28' style="top: 60px"></div>
+                    <div class='timeline__media-icon' data-slide-index='29' style="top: 220px"></div>
+                    <div class='timeline__media-icon' data-slide-index='30' style="top: 620px"></div>
+                    <div class='timeline__media-icon' data-slide-index='31' style="top: 720px"></div>
+                    <div class='timeline__media-icon timeline__media-icon--video' data-slide-index='32' style="top: 1000px"></div>
+                    <div class='timeline__media-icon' data-slide-index='33' style="top: 1500px"></div>
                 </div>
-                <div class='timeline__place'>Jasper Railway Station</div>
-                <div class='timeline__transit timeline__transit--walking' style='height:880px'></div>
+                <div class='timeline__place' data-slide-index='34'>Jasper Railway Station</div>
+                <div class='timeline__transit timeline__transit--walking' style='height:2760px'>
+                    <div class='timeline__annotation'>
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class='timeline__media-icon' data-slide-index='35' style="top: 0px"></div>
+                    <div class='timeline__media-icon' data-slide-index='36' style="top: 50px"></div>
+                    <div class='timeline__media-icon' data-slide-index='37' style="top: 100px"></div>
+                    <div class='timeline__media-icon' data-slide-index='38' style="top: 220px"></div>
+                    <div class='timeline__media-icon' data-slide-index='39' style="top: 300px"></div>
+                    <div class='timeline__media-icon' data-slide-index='40' style="top: 400px"></div>
+                    <div class='timeline__media-icon' data-slide-index='41' style="top: 500px"></div>
+                    <div class='timeline__media-icon' data-slide-index='42' style="top: 600px"></div>
+                    <div class='timeline__media-icon' data-slide-index='43' style="top: 700px"></div>
+                    <div class='timeline__media-icon' data-slide-index='44' style="top: 800px"></div>
+                    <div class='timeline__media-icon' data-slide-index='45' style="top: 900px"></div>
+                    <div class='timeline__media-icon' data-slide-index='46' style="top: 1000px"></div>
+                    <div class='timeline__media-icon' data-slide-index='47' style="top: 1100px"></div>
+                    <div class='timeline__media-icon' data-slide-index='48' style="top: 1200px"></div>
+                    <div class='timeline__media-icon' data-slide-index='49' style="top: 1300px"></div>
+                    <div class='timeline__media-icon' data-slide-index='50' style="top: 1400px"></div>
+                    <div class='timeline__media-icon' data-slide-index='51' style="top: 1500px"></div>
+                    <div class='timeline__media-icon' data-slide-index='52' style="top: 1600px"></div>
+                </div>
             </div>
         </div>
         <div>Some stuff at the bottom</div>
